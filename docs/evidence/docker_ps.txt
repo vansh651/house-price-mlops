@@ -1,0 +1,3 @@
+﻿CONTAINER ID   IMAGE                                                COMMAND                  CREATED          STATUS                  PORTS                                         NAMES
+99d85cbf11c4   kindest/node:v1.29.2                                 "/usr/local/bin/entr…"   18 minutes ago   Up 17 minutes           127.0.0.1:58497->6443/tcp                     house-predictor-control-plane
+195bcba98a16   container-registry.oracle.com/database/free:latest   "/bin/bash -c $ORACL…"   3 months ago     Up 40 hours (healthy)   0.0.0.0:1521->1521/tcp, [::]:1521->1521/tcp   oracle-free

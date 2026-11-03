@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: house-predictor-ui
+  namespace: house-predictor
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: house-predictor-ui}
+  template:
+    metadata:
+      labels: {app: house-predictor-ui}
+    spec:
+      containers:
+        - name: streamlit
+          image: ghcr.io/your-org/house-predictor:latest
+          command: ["python", "streamlit_app/launcher.py"]
+          ports:
+            - {name: http, containerPort: 8501}
+            - {name: metrics, containerPort: 8000}   # Prometheus scrapes this port
+          readinessProbe:
+            httpGet:
+              path: /_stcore/health
+              port: 8501
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /_stcore/health
+              port: 8501
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: house-predictor-ui
+  namespace: house-predictor
+spec:
+  type: LoadBalancer
+  selector: {app: house-predictor-ui}
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8501
+    - name: metrics
+      port: 8000
+      targetPort: 8000

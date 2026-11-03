@@ -1,0 +1,57 @@
+name: CI/CD
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python -m py_compile streamlit_app/app.py streamlit_app/model.py streamlit_app/metrics.py streamlit_app/launcher.py
+      - name: Smoke-test Prometheus metrics
+        run: |
+          cd streamlit_app
+          python -c "import metrics; from prometheus_client import generate_latest; assert b'house_predictor_predictions_total' in generate_latest()"
+      - name: Check Grafana dashboard and Kubernetes monitoring manifests
+        run: |
+          python -m json.tool monitoring/grafana/dashboards/house-predictor.json > /dev/null
+          python scripts/sync_k8s_monitoring.py --check
+      - name: Validate Prometheus config and alert rules
+        run: |
+          docker run --rm -v "$PWD/monitoring/prometheus:/etc/prometheus:ro" \
+            --entrypoint promtool prom/prometheus:v3.15.1 check config /etc/prometheus/prometheus.yml
+      - run: echo "✅ Validation completed successfully"
+
+  build-and-push:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Log in to GitHub Container Registry
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push container image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+          tags: |
+            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:${{ github.sha }}

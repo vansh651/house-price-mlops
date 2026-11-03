@@ -1,0 +1,16 @@
+﻿NAME                                      READY   STATUS    RESTARTS   AGE     IP            NODE                            NOMINATED NODE   READINESS GATES
+pod/house-predictor-ui-687b46c966-g5hdl   1/1     Running   0          4m14s   10.244.0.19   house-predictor-control-plane   <none>           <none>
+pod/house-predictor-ui-687b46c966-tw5kq   1/1     Running   0          4m14s   10.244.0.20   house-predictor-control-plane   <none>           <none>
+
+NAME                         TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)                       AGE   SELECTOR
+service/house-predictor-ui   LoadBalancer   10.96.116.33   <pending>     80:31316/TCP,8000:31021/TCP   15m   app=house-predictor-ui
+
+NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                  SELECTOR
+deployment.apps/house-predictor-ui   2/2     2            2           15m   streamlit    house-predictor:local   app=house-predictor-ui
+
+NAME                                            DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES                                    SELECTOR
+replicaset.apps/house-predictor-ui-6494674b88   0         0         0       15m   streamlit    house-predictor:local                     app=house-predictor-ui,pod-template-hash=6494674b88
+replicaset.apps/house-predictor-ui-687b46c966   2         2         2       10m   streamlit    house-predictor:local                     app=house-predictor-ui,pod-template-hash=687b46c966
+replicaset.apps/house-predictor-ui-76454c6696   0         0         0       11m   streamlit    ghcr.io/your-org/house-predictor:latest   app=house-predictor-ui,pod-template-hash=76454c6696
+replicaset.apps/house-predictor-ui-76c9d57f54   0         0         0       15m   streamlit    ghcr.io/your-org/house-predictor:latest   app=house-predictor-ui,pod-template-hash=76c9d57f54
+replicaset.apps/house-predictor-ui-7dc879f8c4   0         0         0       15m   streamlit    house-predictor:local                     app=house-predictor-ui,pod-template-hash=7dc879f8c4

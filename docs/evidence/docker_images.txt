@@ -1,0 +1,32 @@
+﻿REPOSITORY                                    TAG                                                                           IMAGE ID       CREATED             SIZE
+house-predictor                               local                                                                         fd5650f46d2b   24 minutes ago      792MB
+<none>                                        <none>                                                                        fcb698ea3634   27 minutes ago      792MB
+house-price-mlops                             local                                                                         46061ca5e6cc   About an hour ago   889MB
+ml-monitoring-lab-ml-app                      latest                                                                        46ff801906fc   40 hours ago        158MB
+grafana/grafana                               13.3.0                                                                        d2bd57647b75   6 days ago          1.36GB
+grafana/grafana                               latest                                                                        d2bd57647b75   6 days ago          1.36GB
+student-result-app                            v2                                                                            71f4758432e1   10 days ago         145MB
+student-result-app                            v1                                                                            c0e16fe7fca1   10 days ago         145MB
+nginx                                         alpine                                                                        ef9a6e2b45c2   11 days ago         62.7MB
+nginx                                         latest                                                                        7cf76f406c60   11 days ago         183MB
+prom/prometheus                               latest                                                                        345c03f8738a   11 days ago         250MB
+prom/prometheus                               v3.15.1                                                                       345c03f8738a   11 days ago         250MB
+container-registry.oracle.com/database/free   latest                                                                        e380148ec436   5 months ago        9.51GB
+rhysd/actionlint                              latest                                                                        9d0b3558e128   7 months ago        114MB
+lab4demo                                      latest                                                                        50034097f1ba   14 months ago       137MB
+lab4demo1                                     latest                                                                        c8625560aff7   14 months ago       137MB
+<none>                                        <none>                                                                        e2c7d23b17a7   14 months ago       129MB
+<none>                                        <none>                                                                        47da144aeaa7   14 months ago       124MB
+docker/desktop-kubernetes                     kubernetes-v1.32.2-cni-v1.6.0-critools-v1.31.1-cri-dockerd-v0.3.16-1-debian   ca2d12959459   20 months ago       400MB
+registry.k8s.io/kube-apiserver                v1.32.2                                                                       6417e1437b6d   20 months ago       93.9MB
+registry.k8s.io/kube-scheduler                v1.32.2                                                                       82dfa03f692f   20 months ago       67.9MB
+registry.k8s.io/kube-controller-manager       v1.32.2                                                                       3c9285acfd2f   20 months ago       87.2MB
+registry.k8s.io/kube-proxy                    v1.32.2                                                                       e5aac5df76d9   20 months ago       97.1MB
+registry.k8s.io/etcd                          3.5.16-0                                                                      7fc9d4aa817a   2 years ago         142MB
+registry.k8s.io/coredns/coredns               v1.11.3                                                                       2f6c962e7b83   2 years ago         60.2MB
+registry.k8s.io/pause                         3.10                                                                          afb61768ce38   2 years ago         514kB
+grafana/grafana                               10.4.2                                                                        46becd7c39d0   2 years ago         422MB
+prom/prometheus                               v2.51.2                                                                       0e8e6a7efb9c   2 years ago         256MB
+kindest/node                                  v1.29.2                                                                       1cf551538f7d   2 years ago         960MB
+docker/desktop-vpnkit-controller              dc331cb22850be0cdd97c84a9cfecaf44a1afb6e                                      3750dfec169f   3 years ago         35MB
+docker/desktop-storage-provisioner            v2.0                                                                          c027a58fa0bb   5 years ago         39.8MB

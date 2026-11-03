@@ -1,0 +1,18 @@
+﻿NAME                             READY   STATUS    RESTARTS   AGE   IP            NODE                            NOMINATED NODE   READINESS GATES
+pod/grafana-67f59dddcb-6b8mv     1/1     Running   0          10m   10.244.0.17   house-predictor-control-plane   <none>           <none>
+pod/prometheus-887c4cb69-n59nr   1/1     Running   0          10m   10.244.0.16   house-predictor-control-plane   <none>           <none>
+
+NAME                 TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE   SELECTOR
+service/grafana      ClusterIP   10.96.45.27    <none>        3000/TCP   15m   app=grafana
+service/prometheus   ClusterIP   10.96.101.54   <none>        9090/TCP   15m   app=prometheus
+
+NAME                         READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                    SELECTOR
+deployment.apps/grafana      1/1     1            1           15m   grafana      grafana/grafana:13.3.0    app=grafana
+deployment.apps/prometheus   1/1     1            1           15m   prometheus   prom/prometheus:v3.15.1   app=prometheus
+
+NAME                                   DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES                    SELECTOR
+replicaset.apps/grafana-67f59dddcb     1         1         1       10m   grafana      grafana/grafana:13.3.0    app=grafana,pod-template-hash=67f59dddcb
+replicaset.apps/grafana-6d7fd4b45d     0         0         0       12m   grafana      grafana/grafana:13.3.0    app=grafana,pod-template-hash=6d7fd4b45d
+replicaset.apps/grafana-7f87f95b46     0         0         0       15m   grafana      grafana/grafana:13.3.0    app=grafana,pod-template-hash=7f87f95b46
+replicaset.apps/prometheus-7d7f7975f   0         0         0       15m   prometheus   prom/prometheus:v3.15.1   app=prometheus,pod-template-hash=7d7f7975f
+replicaset.apps/prometheus-887c4cb69   1         1         1       10m   prometheus   prom/prometheus:v3.15.1   app=prometheus,pod-template-hash=887c4cb69
